@@ -139,7 +139,7 @@ class MyApp(QMainWindow, Ui_main_ui):
 
     def save_numbers_list(self):
         """numbers.list faylını yeniləyir."""
-        with open('data/numbers.list', 'w') as f:
+        with open(get_resource_path('data/numbers.list'), 'w') as f:
             f.write(self.numbers.toPlainText())
 
         self.yaz_terminal("numbers.list faylı uğurla yadda saxlandı.")
