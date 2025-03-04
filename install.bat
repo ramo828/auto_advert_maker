@@ -1,8 +1,8 @@
 @echo off
 
-:: Sanal mühit (venv) varsa silinir
+:: Süni mühit (venv) varsa silinir
 if exist "venv" (
-    echo Sanal mühit mevcut, siliniyor...
+    echo Süni mühit mevcut, siliniyor...
     rmdir /s /q venv
 )
 
@@ -18,12 +18,12 @@ if exist "build" (
     rmdir /s /q build
 )
 
-:: Sanal mühit (venv) yaradılır
-echo Sanal mühit yaradılır...
+:: Süni mühit (venv) yaradılır
+echo Süni mühit yaradılır...
 python -m venv venv
 
-:: Sanal mühiti aktivləşdirir
-echo Sanal mühit aktivləşdirilir...
+:: Süni mühiti aktivləşdirir
+echo Süni mühit aktivləşdirilir...
 call venv\Scripts\activate.bat
 echo PIP versiyonunu güncelliyorum...
 pip install --upgrade pip
@@ -67,8 +67,8 @@ pyinstaller --onefile %DATA_FILES% ^
     --icon=static\icons\app_icon.ico ^
     main.py
 
-:: Sanal mühiti devre dışı bırakır
-echo Sanal mühit devre dışı bırakılıyor...
+:: Süni mühiti devre dışı bırakır
+echo Süni mühit devre dışı bırakılıyor...
 deactivate
 
 echo Kurulum tamamlandı!
