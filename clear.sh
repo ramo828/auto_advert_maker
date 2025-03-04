@@ -1,1 +1,1 @@
-rm -rf build dist ext* screen* server* *.spec venv
+rm -rf build dist ext* screen* server* *.spec venv module/*.c
