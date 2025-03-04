@@ -155,7 +155,7 @@ class Ui_main_ui(object):
     # setupUi
 
     def retranslateUi(self, main_ui):
-        main_ui.setWindowTitle(QCoreApplication.translate("main_ui", u"MainWindow", None))
+        main_ui.setWindowTitle(QCoreApplication.translate("main_ui", u"AdvertMaker", None))
         self.text_group.setTitle(QCoreApplication.translate("main_ui", u"N\u00f6mr\u0259l\u0259rin siyah\u0131s\u0131", None))
         self.label.setText(QCoreApplication.translate("main_ui", u"G\u00f6st\u0259ril\u0259c\u0259k n\u00f6mr\u0259 limiti", None))
         self.site_content.setTitle(QCoreApplication.translate("main_ui", u"S\u0259hif\u0259 m\u0259zmunu", None))
