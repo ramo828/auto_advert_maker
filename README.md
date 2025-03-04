@@ -39,7 +39,7 @@ Bu tətbiq, telefon nömrəsi satışına dair elanlar yaratmaq üçün avtomatl
 ## İstifadə
 
 1. **Tətbiqi yükləyin** və `settings.json` faylını öz tələblərinizə uyğun konfiqurasiya edin.
-2. Nömrələr əlavə edərək ilan şəkillərinizi yaradın.
+2. Nömrələr əlavə edərək Elan şəkillərinizi yaradın.
 3. Şəkilləri müvafiq qovluğa saxlayın və satış üçün istifadə edin.
 
 ### **Quraşdırma:**
