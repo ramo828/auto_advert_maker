@@ -1,0 +1,174 @@
+/* Font dosyasını layihəmizə daxil edirik */
+@font-face {
+  font-family: "CustomFont"; /* Fontun adı */
+  src: url("font.ttf") format("truetype"); /* TTF formatında fontu daxil edirik */
+  font-weight: normal; /* Normal font çəkisi */
+  font-style: normal; /* Normal font stili */
+}
+
+/* Bütün elementlər üçün margin və padding sıfırlanır, font olaraq xüsusi font istifadə edilir */
+* {
+  margin: 0; /* Margin sıfırlanır */
+  padding: 0; /* Padding sıfırlanır */
+  box-sizing: border-box; /* Box modelinin düzgün işləməsi üçün */
+  font-family: "CustomFont", sans-serif; /* Sayfa boyunca xüsusi font istifadə edilir */
+}
+
+/* Sayfanın əsas quruluşu */
+body {
+  display: flex; /* Flexbox düzəni ilə elementlər şaquli ortalanır */
+  align-items: center; /* Şaquli ortalama */
+  justify-content: center; /* Üfüqi ortalama */
+  min-height: 100vh; /* Sayfanın minimal hündürlüyü ekranın ölçüsünə uyğun olacaq */
+  width: 100%;
+  padding: 0 10px; /* Sayfanın kənarlarından 10px boşluq buraxılır */
+  position: relative; /* Konumlandırma üçün istifadə olunur */
+}
+
+/* Arxa plan şəklini əlavə edirik */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("hero-bg.jpg") center/cover no-repeat; /* Arxa planın şəkli mərkəzdə yerləşir və genişlənir */
+  z-index: -1; /* Arxa planda qalması üçün */
+}
+.content-wrapper {
+  width: 900px;  /* Genişlik */
+  height: 1000px; /* Yükseklik */
+  border-radius: 8px; /* Küncləri yuvarlaqlaşdırır */
+  padding: 30px; /* İçəridə 30px boşluq buraxır */
+  text-align: center; /* İçəriyi mərkəzləşdirir */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Yarı saydam ağ sərhəd */
+  backdrop-filter: blur(9px); /* Arxa planın bulanıklaşdırılması */
+  -webkit-backdrop-filter: blur(9px); /* Safari üçün bulanıklaşdırma effekti */
+  position: relative; /* İçəridə konumlandırma üçün */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* Başlıq stilini təyin edirik */
+h1 {
+  font-size: 3rem; /* Başlığın ölçüsünü təyin edirik */
+  margin-bottom: 0px; /* Başlıq altındakı boşluğu sıfırlayırıq */
+  margin-left: 20px; /* Başlığı sola 20px sürükləyirik */
+  color: #fff; /* Başlığın rəngi ağ olur */
+}
+
+/* Siyahı stilini təyin edirik */
+ul {
+  list-style: none; /* Siyahı işarələrini silirik */
+  padding: 0;
+  color: #fff; /* Siyahı elementlərinin yazısı ağ olur */
+  position: relative; /* Logo'nun yerləşdirilməsi üçün */
+}
+
+li {
+  font-size: 2.2rem; /* Siyahı elementlərinin ölçüsünü təyin edirik */
+  margin: 10px 0; /* Hər siyahı elementinin arasında 10px boşluq buraxılır */
+  line-height: 1.2; /* Sətir yüksəkliyi */
+  opacity: 0.9; /* Saydamlıq əlavə edirik */
+  position: relative; /* Konumlandırma üçün */
+}
+li::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; /* Çizginin yeri */
+  left: 15%; /* Çizgiyi sola doğru biraz kaydırarak merkezle */
+  right: 15%; /* Çizgiyi sağa doğru biraz kaydırarak merkezle */
+  width: 70%; /* Çizginin uzunluğunu kısaltmak için 80% yapıyoruz */
+  height: 2px; /* Çizginin kalınlığı */
+  background-color: #fff; /* Çizginin rengi beyaz */
+  opacity: 0.3; /* Çizginin saydamlığı */
+}
+
+/* Saydam logo stili */
+.logo {
+  position: absolute;
+  top: 50%; /* Logonu şaquli olaraq mərkəzləşdiririk */
+  left: 50%; /* Logonu üfüqi olaraq mərkəzləşdiririk */
+  transform: translate(-50%, -50%) rotate(45deg); /* 45 dərəcə döndürürük */
+  opacity: 0.3; /* Saydamlıq əlavə edirik */
+  pointer-events: none; /* Logo üzərinə klikləməyi əngəlləyirik */
+  z-index: -1; /* Logo, digər elementlərin arxasında qalır */
+  width: 600px; /* Logonun eni */
+  height: 200px; /* Logonun hündürlüyü */
+}
+
+/* Footer hissəsinin stili */
+footer {
+  margin-top: 20px;
+  color: #fff; /* Yazının rəngi ağ olur */
+}
+
+footer p {
+  font-size: 1.2rem; /* Yazı ölçüsünü təyin edirik */
+}
+
+/* İkonların stili */
+head img {
+  height: 30px; /* İkon ölçüsünü təyin edirik */
+  margin-right: 10px; /* İkonlar arasına 10px boşluq buraxılır */
+}
+
+/* Başlıq və logoların düzülüşü */
+.title-wrapper {
+  display: flex;  /* Başlıq və logoları üfüqi olaraq hizalayırıq */
+  align-items: center;  /* Yüksəkliyə görə ortalanır */
+}
+
+.icon {
+  height: 45px;  /* İkonun ölçüsünü təyin edirik */
+  margin-right: 3px;  /* İkonlar arasında boşluq buraxırıq */
+  filter: invert(100%);  /* İkonları ağ rəngə çeviririk */
+}
+
+/* İletişim məlumatları bölməsinin stili */
+.contact-info {
+  background-color: rgba(255, 255, 255, 0.3);  /* Saydam ağ arxa plan */
+  opacity: 0.8; /* Saydamlıq əlavə edirik */
+  padding: 10px; /* İçəriyə boşluq verilmir */
+  margin-top: 15px; /* Üstdən boşluq buraxılır */
+  border-radius: 15px; /* Küncləri yuvarlaqlaşdırırıq */
+  text-align: center; /* Mətni mərkəzləşdiririk */
+  font-family: "CustomFont", sans-serif;  /* Ümumi font ilə uyğun */
+}
+
+/* İletişim məlumatları içərisindəki mətn */
+.contact-info p {
+  margin: 15px 0; /* Paragraflar arasına 15px boşluq buraxırıq */
+  font-size: 30px;  /* Yazı ölçüsünü böyüdürük */
+  color: #ffcc00;  /* Yazı rəngini sarı edirik */
+}
+
+/* İletişim logoları ilə mətn arasındakı boşluq */
+.contact-logo {
+  margin-right: 5px;  /* Logo ilə yazı arasına 5px boşluq əlavə edirik */
+  vertical-align: middle;  /* Logonu yazı ilə eyni xəttdə hizalayırıq */
+}
+
+/* İletişim logosunun ölçüsü */
+.contact-logo img {
+  height: 50px;  /* Logo ölçüsünü 25px edirik */
+  margin-top: -20px; /* Logo ilə yazı arasına boşluq əlavə edirik */
+}
+
+/* Yazı və logonun eyni xəttdə olmasını təmin edirik */
+.contact-text {
+  vertical-align: middle;  /* Yazını logonun ilə eyni xəttdə hizalayırıq */
+  display: inline-block;  /* Yazını üfüqi düzəldirik */
+  margin-bottom: 30px; /* Yazının altına boşluq buraxırıq */
+  font-size: 1.9rem; /* Siyahı elementlərinin ölçüsünü təyin edirik */
+}
+
+
+/* Yazı və logonun eyni xəttdə olmasını təmin edirik */
+.message {
+  vertical-align: middle;  /* Yazını logonun ilə eyni xəttdə hizalayırıq */
+  display: inline-block;  /* Yazını üfüqi düzəldirik */
+  margin-bottom: 30px; /* Yazının altına boşluq buraxırıq */
+  font-size: 1.3rem; /* Siyahı elementlərinin ölçüsünü təyin edirik */
+  color: antiquewhite; /* Yazının rəngini dəyişirik */
+}

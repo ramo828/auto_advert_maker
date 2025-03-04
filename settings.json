@@ -1,0 +1,36 @@
+{
+    "max_number": 13,
+    "save_directory": "output",
+    "auto_create_directory": true,
+    "auto_clean_output": true,
+    "use_chromedriver_manager": false,
+    "chromedriver_path": "/usr/bin/chromedriver",
+    "screenshot_filename": "nomre_ss",
+    "screenshot_format": "png",
+    "number_list_path": "data/numbers.list",
+    "api_url": "http://127.0.0.1:5000/api/numbers",
+    "web_url": "http://127.0.0.1:5000",
+    "headless": true,
+    "window_size": [
+        1920,
+        1080
+    ],
+    "site_settings": {
+        "title": "B1r_nomre_test",
+        "heading": [],
+        "description": "B\u00fct\u00fcn h\u00fcquqlar qorunur",
+        "phone": "0776428183",
+        "message": "N\u00f6mr\u0259l\u0259ri bizd\u0259n sifari\u015f verin",
+        "icons": [
+            "instagram.ico",
+            "tiktok.ico"
+        ],
+        "template_path": "index.html",
+        "css_path": "style.css",
+        "logo_path": "logo_b1r.png"
+    },
+    "server_settings": {
+        "host": "0.0.0.0",
+        "port": 5000
+    }
+}

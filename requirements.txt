@@ -1,0 +1,8 @@
+requests
+selenium
+webdriver-manager
+flask
+pyside6
+cython
+pyinstaller
+waitress

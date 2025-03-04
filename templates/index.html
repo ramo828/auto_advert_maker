@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.title }}</title>
+    <!-- Style CSS dosyasını ekliyoruz -->
+    <link rel="stylesheet" href="{{ url_for('static', filename=data.css_path) }}">
+</head>
+<body>
+    <!-- Arka plan resmini ekliyoruz -->
+    <div class="background"></div>
+
+    <div class="content-wrapper">
+        <div class="title-wrapper">
+            <img src="{{ url_for('static', filename=data.logo_path) }}" alt="Logo" class="logo">
+            <!-- Logoları başlığın önünde gösterecek kapsayıcı -->
+            {% for icon in data.icons %}
+                <img src="{{ url_for('static', filename='icons/' + icon) }}" alt="Icon" class="icon">
+            {% endfor %}
+            <h1>{{ data.title }}</h1> <!-- Başlık -->
+        </div>
+        <p> 
+            <div class="message">
+            {{ data.message }}  <!-- Açıklama -->
+            <div>
+        </p>
+        <ul>
+            {% for number in data.heading %}
+                <li>{{ number }}</li>  <!-- Her bir numarayı liste olarak göster -->
+            {% endfor %}
+        </ul>
+        <!-- İletişim bilgilerini ekliyoruz -->
+        <div class="contact-info">
+            <p><strong>Sipariş üçün: </strong></p>
+            <p>
+                <!-- Logo ve yazıyı farklı elemanlar olarak ayırıyoruz -->
+                <span class="contact-logo">
+                    <img src="{{ url_for('static', filename='icons/whatsapp.ico') }}" alt="Whatsapp Logo">
+                </span>
+                <span class="contact-text">{{ data.phone }}</span>  <!-- Yazıyı ayrı bir span içinde -->
+            </p>
+        </div>
+
+
+        <footer>
+            <p>{{ data.description }}</p>  <!-- Açıklama -->
+        </footer>
+    </div>
+</body>
+</html>
