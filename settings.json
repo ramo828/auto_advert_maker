@@ -1,5 +1,5 @@
 {
-    "max_number": 13,
+    "max_number": 10,
     "save_directory": "output",
     "auto_create_directory": true,
     "auto_clean_output": true,

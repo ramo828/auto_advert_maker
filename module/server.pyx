@@ -74,18 +74,15 @@ def run_flask():
             serve(app, host=settings['server_settings']['host'], port=settings['server_settings']['port'])
         except Exception as e:
             print("Flask dayandırıldı:", e)
-            print(os.getcwd())
             break
 
 def start_flask():
     global flask_thread, stop_event
-    print(os.getcwd())
     if flask_thread is None or not flask_thread.is_alive():
         stop_event.clear()
         flask_thread = threading.Thread(target=run_flask, daemon=True)
         flask_thread.start()
         print("Flask başladıldı.")
-        print(os.getcwd())
 
 
 def stop_flask():

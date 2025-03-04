@@ -1,27 +1,75 @@
 @echo off
-REM Sanal mühit (venv) yaradılır
+
+:: Sanal mühit (venv) varsa silinir
+if exist "venv" (
+    echo Sanal mühit mevcut, siliniyor...
+    rmdir /s /q venv
+)
+
+:: dist klasörü varsa silinir
+if exist "dist" (
+    echo dist klasörü mevcut, siliniyor...
+    rmdir /s /q dist
+)
+
+:: build klasörü varsa silinir
+if exist "build" (
+    echo build klasörü mevcut, siliniyor...
+    rmdir /s /q build
+)
+
+:: Sanal mühit (venv) yaradılır
 echo Sanal mühit yaradılır...
 python -m venv venv
 
-REM Sanal mühiti aktivləşdirir
+:: Sanal mühiti aktivləşdirir
 echo Sanal mühit aktivləşdirilir...
-call venv\Scripts\activate
+call venv\Scripts\activate.bat
+echo PIP versiyonunu güncelliyorum...
+pip install --upgrade pip
 
-REM Asılılıqları yükləyir
-echo Asılılıqları yükləyirəm...
+:: Bağımlılıkları yüklüyor
+echo Bağımlılıkları yüklüyorum...
 pip install -r requirements.txt
 
-REM setup.py faylını tərtib et
-echo Cython modullarını tərtib edirəm...
+:: setup.py dosyasını derler
+echo Cython modüllerini derliyorum...
 python setup.py build_ext --inplace
 
-REM PyInstaller ilə icra edilə bilən fayl yaradır
-echo PyInstaller ilə EXE faylı yaradılır...
-pyinstaller --onefile --add-data "module\\screenshot.pyx;module" --add-data "module\\server.pyx;module" main.py
+:: PyInstaller ile çalıştırılabilir dosya oluşturuyor
+echo PyInstaller ile EXE dosyası oluşturuluyor...
 
-REM Sanal mühiti deaktivləşdirir
-echo Sanal mühit deaktivləşdirilir...
+:: Dosya yollarını toplar ve her birini --add-data formatında işler
+set DATA_FILES=
+if exist "module" (
+    for /r %%f in (module\*) do (
+        set DATA_FILES=!DATA_FILES! --add-data "%%f:module"
+    )
+) else (
+    echo "module dizini bulunamadı."
+)
+
+:: Flask ve diğer modülleri gizli olarak ekleriz
+pyinstaller --onefile %DATA_FILES% ^
+    --add-data "templates:templates" ^
+    --add-data "static:static" ^
+    --add-data "data:data" ^
+    --add-data "settings.json:." ^
+    --hidden-import=flask ^
+    --hidden-import=waitress ^
+    --hidden-import=selenium ^
+    --hidden-import=selenium.webdriver.chrome ^
+    --hidden-import=requests ^
+    --hidden-import=selenium.webdriver.support.ui ^
+    --hidden-import=selenium.webdriver.support.expected_conditions ^
+    --hidden-import=webdriver_manager ^
+    --hidden-import=webdriver_manager.chrome ^
+    --icon=static\icons\app_icon.ico ^
+    main.py
+
+:: Sanal mühiti devre dışı bırakır
+echo Sanal mühit devre dışı bırakılıyor...
 deactivate
 
-echo Quraşdırma tamamlandı!
+echo Kurulum tamamlandı!
 pause

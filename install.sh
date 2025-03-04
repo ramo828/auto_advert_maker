@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Sanal mühit (venv) varsa silinir
+# Süni mühit (venv) varsa silinir
 if [ -d "venv" ]; then
-    echo "Sanal mühit mevcut, siliniyor..."
+    echo "Süni mühit mevcut, siliniyor..."
     rm -rf venv
 fi
 
@@ -18,12 +18,12 @@ if [ -d "build" ]; then
     rm -rf build
 fi
 
-# Sanal mühit (venv) yaradılır
-echo "Sanal mühit yaradılır..."
+# Süni mühit (venv) yaradılır
+echo "Süni mühit yaradılır..."
 python -m venv venv
 
-# Sanal mühiti aktivləşdirir
-echo "Sanal mühit aktivləşdirilir..."
+# Süni mühiti aktivləşdirir
+echo "Süni mühit aktivləşdirilir..."
 source venv/bin/activate
 echo "PIP verisyasını yeniləyirəm.."
 pip install --upgrade pip
@@ -69,8 +69,8 @@ pyinstaller --onefile $DATA_FILES \
     --hidden-import=webdriver_manager.chrome \
     --icon=static/icons/app_icon.ico \
     main.py
-# Sanal mühiti deaktivləşdirir
-echo "Sanal mühit deaktivləşdirilir..."
+# Süni mühiti deaktivləşdirir
+echo "Süni mühit deaktivləşdirilir..."
 deactivate
 
 echo "Quraşdırma tamamlandı!"
