@@ -4,7 +4,7 @@
     "auto_create_directory": true,
     "auto_clean_output": true,
     "use_chromedriver_manager": false,
-    "chromedriver_path": "/usr/bin/chromedriver",
+    "chromedriver_path": "/usr/local/bin/chromedriver",
     "screenshot_filename": "nomre_ss",
     "screenshot_format": "png",
     "number_list_path": "data/numbers.list",
