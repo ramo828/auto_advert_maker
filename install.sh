@@ -19,13 +19,6 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt-get update
 sudo apt-get install -y google-chrome-stable
 
-# echo "ChromeDriver yüklənir..."
-# CHROME_DRIVER_VERSION=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE)
-# wget -N https://storage.googleapis.com/chrome-for-testing-public/$CHROME_DRIVER_VERSION/linux64/chromedriver-linux64.zip -P ~/
-# unzip ~/chromedriver_linux64.zip -d ~/ 
-# sudo mv -f ~/chromedriver /usr/local/bin/
-# sudo chmod +x /usr/local/bin/chromedriver
-# rm ~/chromedriver_linux64.zip
 echo "ChromeDriver yüklənir..."
 CHROME_DRIVER_VERSION=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE)
 
