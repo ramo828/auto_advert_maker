@@ -46,12 +46,15 @@ def baslat_driver(headless, pencere_olcusu, chromedriver_auto, chromedriver_yolu
     return driver
 
 # Ekran görüntüsü alan funksiya
-def ekran_goruntusu_al(driver, SAXLA_QOVLUQ, ekran_fayl_adi, ekran_sayi, ekran_format):
+def save_screenshot(driver, SAXLA_QOVLUQ, ekran_fayl_adi, ekran_sayi, ekran_format, ss_fullpage=False):
     try:
         sc_element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "content-wrapper"))
         )
-        screenshot = sc_element.screenshot_as_png
+        if(not ss_fullpage):
+            screenshot = sc_element.screenshot_as_png
+        else:
+            screenshot = driver.get_screenshot_as_png()
         filename = f"{SAXLA_QOVLUQ}/{ekran_fayl_adi}-{ekran_sayi}.{ekran_format}"
 
         with open(filename, "wb") as f:
@@ -82,6 +85,8 @@ def avtomatlaşdırma():
     web_url = ayarlar["web_url"]
     headless = ayarlar["headless"]
     pencere_olcusu = ayarlar["window_size"]
+    tam_olcu = ayarlar["full_page"]
+
 
     # Qovluq idarəetməsini et
     qovlugu_idare_et(SAXLA_QOVLUQ, auto_qovluq_temizle, auto_qovluq_yarat)
@@ -120,7 +125,7 @@ def avtomatlaşdırma():
             driver.refresh()
             sleep(3)
 
-            ekran_sayi = ekran_goruntusu_al(driver, SAXLA_QOVLUQ, ekran_fayl_adi, ekran_sayi, ekran_format)
+            ekran_sayi = save_screenshot(driver, SAXLA_QOVLUQ, ekran_fayl_adi, ekran_sayi, ekran_format, tam_olcu)
 
             nomre_sayaci += max_nomre
 

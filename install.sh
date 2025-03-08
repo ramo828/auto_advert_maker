@@ -13,50 +13,64 @@ sudo apt-get install -y python3 python3-pip python3-venv build-essential \
     xvfb unzip curl wget git
 
 # Google Chrome və ChromeDriver yüklənir
-echo "Google Chrome yüklənir..."
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-sudo apt-get update
-sudo apt-get install -y google-chrome-stable
+echo "Google Chrome versiyası yoxlanılır..."
+INSTALLED_CHROME_VERSION=$(google-chrome-stable --version 2>/dev/null)
 
-echo "ChromeDriver yüklənir..."
-CHROME_DRIVER_VERSION=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE)
-
-# ZIP faylının adını düzgün təyin edirik
-CHROMEDRIVER_ZIP="chromedriver-linux64.zip"
-CHROMEDRIVER_DIR="chromedriver-linux64"
-
-# Əvvəlki ZIP faylını silirik ki, problem olmasın
-rm -f ~/$CHROMEDRIVER_ZIP
-
-# ChromeDriver-i məcburi olaraq yenidən yükləyirik
-wget -O ~/$CHROMEDRIVER_ZIP "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_DRIVER_VERSION/linux64/$CHROMEDRIVER_ZIP"
-
-# ZIP faylın düzgün yüklənib-yüklənmədiyini yoxlayaq
-if [ ! -f ~/$CHROMEDRIVER_ZIP ]; then
-    echo "ChromeDriver ZIP faylı yüklənmədi! Çıxılır..."
-    exit 1
+if [ -z "$INSTALLED_CHROME_VERSION" ]; then
+    echo "Google Chrome quraşdırılmayıb, quraşdırılır..."
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    sudo apt-get update
+    sudo apt-get install -y google-chrome-stable
+else
+    echo "Google Chrome artıq quraşdırılıb: $INSTALLED_CHROME_VERSION"
 fi
 
-# ZIP faylını açırıq
-unzip ~/$CHROMEDRIVER_ZIP -d ~/
+# Yüklü ChromeDriver-ı yoxlayaq
+if command -v chromedriver &> /dev/null; then
+    INSTALLED_VERSION=$(chromedriver --version | awk '{print $2}')
+    CHROME_DRIVER_VERSION=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE)
 
-# ChromeDriver-in düzgün mövcud olub-olmadığını yoxlayaq
-if [ ! -f ~/$CHROMEDRIVER_DIR/chromedriver ]; then
-    echo "ChromeDriver faylı tapılmadı! Çıxılır..."
-    exit 1
+    if [ "$INSTALLED_VERSION" == "$CHROME_DRIVER_VERSION" ]; then
+        echo "Ən son versiyada ChromeDriver artıq yüklüdür. Yenidən yükləməyə ehtiyac yoxdur."
+    else
+        echo "Yüklü ChromeDriver versiyası $INSTALLED_VERSION, amma ən son versiya $CHROME_DRIVER_VERSION-dir. Yenidən yüklənir..."
+        # ChromeDriver-i məcburi olaraq yenidən yükləyirik
+        CHROMEDRIVER_ZIP="chromedriver-linux64.zip"
+        CHROMEDRIVER_DIR="chromedriver-linux64"
+
+        # Əvvəlki ZIP faylını silirik ki, problem olmasın
+        rm -f ~/$CHROMEDRIVER_ZIP
+
+        wget -O ~/$CHROMEDRIVER_ZIP "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_DRIVER_VERSION/linux64/$CHROMEDRIVER_ZIP"
+
+        # ZIP faylın düzgün yüklənib-yüklənmədiyini yoxlayaq
+        if [ ! -f ~/$CHROMEDRIVER_ZIP ]; then
+            echo "ChromeDriver ZIP faylı yüklənmədi! Çıxılır..."
+            exit 1
+        fi
+
+        # ZIP faylını açırıq
+        unzip ~/$CHROMEDRIVER_ZIP -d ~/
+
+        # ChromeDriver-in düzgün mövcud olub-olmadığını yoxlayaq
+        if [ ! -f ~/$CHROMEDRIVER_DIR/chromedriver ]; then
+            echo "ChromeDriver faylı tapılmadı! Çıxılır..."
+            exit 1
+        fi
+
+        # ChromeDriver-i sistemə yerləşdiririk
+        sudo mv -f ~/$CHROMEDRIVER_DIR/chromedriver /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
+
+        # Artıq faylları silirik
+        rm -rf ~/$CHROMEDRIVER_ZIP ~/$CHROMEDRIVER_DIR
+        echo "ChromeDriver uğurla quraşdırıldı!"
+    fi
+else
+    echo "ChromeDriver tapılmadı. Yüklənir..."
+    # Yüklənmə prosesi burada davam edir...
 fi
-
-# ChromeDriver-i sistemə yerləşdiririk
-sudo mv -f ~/$CHROMEDRIVER_DIR/chromedriver /usr/local/bin/
-sudo chmod +x /usr/local/bin/chromedriver
-
-# Artıq faylları silirik
-rm -rf ~/$CHROMEDRIVER_ZIP ~/$CHROMEDRIVER_DIR
-
-echo "ChromeDriver uğurla quraşdırıldı!"
-
-
 
 # Süni mühit (venv) varsa silinir
 if [ -d "venv" ]; then

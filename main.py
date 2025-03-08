@@ -13,9 +13,9 @@ class FlaskThread(QThread):
     terminal_signal = Signal(str)
 
     def run(self):
-        self.terminal_signal.emit("Flask sunucusu başlanğıc edir...")
+        self.terminal_signal.emit("Flask serveri başlanğıc edir...")
         start_flask()
-        self.terminal_signal.emit("Flask sunucusu başladı.")
+        self.terminal_signal.emit("Flask serveri başladı.")
 
 class AutomationThread(QThread):
     """Selenium avtomatlaşdırmasını ayrı bir threadde çalıştırır"""
