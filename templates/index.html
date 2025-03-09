@@ -27,7 +27,7 @@
         </p>
         <ul>
             {% for number in data.heading %}
-                <li>{{ number }}</li>  <!-- Her bir numarayı liste olarak göster -->
+                <li>{{ number | format_phone }}</li>
             {% endfor %}
         </ul>
         <!-- İletişim bilgilerini ekliyoruz -->

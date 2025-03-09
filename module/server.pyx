@@ -22,6 +22,14 @@ data = [
     # Örnek veriler, gerçek veriler burada kullanılabilir
 ]  
 
+
+def format_phone(number):
+    number = str(number)
+    sep = settings['site_settings']['phone_separator']  # JSON'dan ayırıcıyı al
+    return f"{number[:3]}{sep}{number[3:6]}{sep}{number[6:8]}{sep}{number[8:]}"
+
+app.jinja_env.filters['format_phone'] = format_phone  # Filtreyi Jinja2'ye ekle
+
 @app.route('/')
 def home():
     data_dict = {
