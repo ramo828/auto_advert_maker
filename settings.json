@@ -16,6 +16,8 @@
         1080
     ],
     "full_page": true,
+    "window_x_offset":0,
+    "window_y_offset":139,
     "site_settings": {
         "title": "B1r_nomre",
         "heading": [],
@@ -29,7 +31,7 @@
         "template_path": "index.html",
         "css_path": "style.css",
         "logo_path": "logo_b1r.png",
-        "phone_separator"   : "~~"
+        "phone_separator": "~~"
     },
     "server_settings": {
         "host": "0.0.0.0",

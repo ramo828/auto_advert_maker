@@ -87,11 +87,14 @@ def avtomatlaşdırma():
     headless = ayarlar["headless"]
     pencere_olcusu = ayarlar["window_size"]
     tam_olcu = ayarlar["full_page"]
+    win_x_offset = ayarlar["window_x_offset"]
+    win_y_offset = ayarlar["window_y_offset"]
+
 
 
     # Qovluq idarəetməsini et
     qovlugu_idare_et(SAXLA_QOVLUQ, auto_qovluq_temizle, auto_qovluq_yarat)
-
+    pencere_olcusu = [pencere_olcusu[0]+win_x_offset, pencere_olcusu[1]+win_y_offset]
     # WebDriver-i başlat
     driver = baslat_driver(headless, pencere_olcusu, chromedriver_auto, chromedriver_yolu)
 

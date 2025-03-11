@@ -1,1 +1,1 @@
-rm -rf build dist ext* screen* server* *.spec venv module/*.c
+rm -rf build dist ext* screen* server* *.spec venv module/*.c ui/__pycache__
