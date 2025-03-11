@@ -125,44 +125,50 @@ head img {
   filter: invert(100%);  /* İkonları ağ rəngə çeviririk */
 }
 
+/* İlk ikon için özel boyut */
+.icon-1 {
+  width: 70px;
+  height: 70px;
+}
 /* İletişim məlumatları bölməsinin stili */
 .contact-info {
-  background-color: rgba(255, 255, 255, 0.3);  /* Saydam ağ arxa plan */
+  background-color: rgba(255, 255, 255, 0.3); /* Saydam ağ arxa plan */
   opacity: 0.8; /* Saydamlıq əlavə edirik */
   padding: 10px; /* İçəriyə boşluq verilmir */
   margin-top: 15px; /* Üstdən boşluq buraxılır */
   border-radius: 15px; /* Küncləri yuvarlaqlaşdırırıq */
-  text-align: center; /* Mətni mərkəzləşdiririk */
-  font-family: "CustomFont", sans-serif;  /* Ümumi font ilə uyğun */
+  font-family: "CustomFont", sans-serif; /* Ümumi font ilə uyğun */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Ortaya hizalama */
 }
 
-/* İletişim məlumatları içərisindəki mətn */
+/* Tüm öğeleri aynı satıra hizalama */
 .contact-info p {
-  margin: 15px 0; /* Paragraflar arasına 15px boşluq buraxırıq */
-  font-size: 30px;  /* Yazı ölçüsünü böyüdürük */
-  color: #ffcc00;  /* Yazı rəngini sarı edirik */
+  display: flex;
+  align-items: center; /* Dikeyde ortalama */
+  gap: 10px; /* Elemanlar arasına boşluk */
+  font-size: 30px; /* Yazı ölçüsünü böyüdürük */
+  color: #ffcc00; /* Yazı rəngini sarı edirik */
+  margin: 0; /* Gereksiz boşlukları kaldır */
 }
 
-/* İletişim logoları ilə mətn arasındakı boşluq */
-.contact-logo {
-  margin-right: 5px;  /* Logo ilə yazı arasına 5px boşluq əlavə edirik */
-  vertical-align: middle;  /* Logonu yazı ilə eyni xəttdə hizalayırıq */
+/* "Sipariş üçün:" yazısını belirginleştirme */
+.contact-info p strong {
+  font-size: 33px;
 }
 
-/* İletişim logosunun ölçüsü */
+/* Logo ayarları */
 .contact-logo img {
-  height: 50px;  /* Logo ölçüsünü 25px edirik */
-  margin-top: -20px; /* Logo ilə yazı arasına boşluq əlavə edirik */
+  height: 45px; /* Logo ölçüsünü 50px edirik */
+  width: auto;
 }
 
-/* Yazı və logonun eyni xəttdə olmasını təmin edirik */
+/* Telefon numarası ayarları */
 .contact-text {
-  vertical-align: middle;  /* Yazını logonun ilə eyni xəttdə hizalayırıq */
-  display: inline-block;  /* Yazını üfüqi düzəldirik */
-  margin-bottom: 30px; /* Yazının altına boşluq buraxırıq */
-  font-size: 1.9rem; /* Siyahı elementlərinin ölçüsünü təyin edirik */
+  font-size: 1.9rem;
+  font-weight: bold;
 }
-
 
 /* Yazı və logonun eyni xəttdə olmasını təmin edirik */
 .message {

@@ -14,9 +14,10 @@
     <div class="content-wrapper">
         <div class="title-wrapper">
             <img src="{{ url_for('static', filename=data.logo_path) }}" alt="Logo" class="logo">
-            <!-- Logoları başlığın önünde gösterecek kapsayıcı -->
             {% for icon in data.icons %}
-                <img src="{{ url_for('static', filename='icons/' + icon) }}" alt="Icon" class="icon">
+                <img src="{{ url_for('static', filename='icons/' + icon) }}" 
+                    alt="Icon" 
+                    class="icon icon-{{ loop.index }}">
             {% endfor %}
             <h1>{{ data.title }}</h1> <!-- Başlık -->
         </div>
@@ -30,18 +31,15 @@
                 <li>{{ number | format_phone }}</li>
             {% endfor %}
         </ul>
-        <!-- İletişim bilgilerini ekliyoruz -->
+      <!-- İletişim bilgilerini tek satırda gösteriyoruz -->
         <div class="contact-info">
-            <p><strong>Sipariş üçün: </strong></p>
-            <p>
-                <!-- Logo ve yazıyı farklı elemanlar olarak ayırıyoruz -->
+            <p><strong>Sipariş üçün:</strong> 
                 <span class="contact-logo">
                     <img src="{{ url_for('static', filename='icons/whatsapp.ico') }}" alt="Whatsapp Logo">
                 </span>
-                <span class="contact-text">{{ data.phone }}</span>  <!-- Yazıyı ayrı bir span içinde -->
+                <span class="contact-text">{{ data.phone }}</span>
             </p>
         </div>
-
 
         <footer>
             <p>{{ data.description }}</p>  <!-- Açıklama -->

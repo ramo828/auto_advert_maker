@@ -35,6 +35,7 @@ def baslat_driver(headless, pencere_olcusu, chromedriver_auto, chromedriver_yolu
         chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--incognito")  # **Gizli mod** (Önbellek yok)
 
     if chromedriver_auto:
         service = Service(ChromeDriverManager().install())
