@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ data.title }}</title>
     <!-- Style CSS dosyasını ekliyoruz -->
-    <link rel="stylesheet" href="{{ url_for('static', filename=data.css_path) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename=data['css_path']) }}">
 </head>
 <body>
     <!-- Arka plan resmini ekliyoruz -->
@@ -13,25 +13,30 @@
 
     <div class="content-wrapper">
         <div class="title-wrapper">
-            <img src="{{ url_for('static', filename=data.logo_path) }}" alt="Logo" class="logo">
-            {% for icon in data.icons %}
-                <img src="{{ url_for('static', filename='icons/' + icon) }}" 
-                    alt="Icon" 
-                    class="icon icon-{{ loop.index }}">
-            {% endfor %}
+            <img src="{{ url_for('static', filename=data['logo_path']) }}" alt="Logo" class="logo">
+            
+            {% if data.icons %}
+                {% for icon in data.icons %}
+                    <img src="{{ url_for('static', filename='icons/' + icon) }}" 
+                        alt="Icon" 
+                        class="icon icon-{{ loop.index }}">
+                {% endfor %}
+            {% endif %}
+            
             <h1>{{ data.title }}</h1> <!-- Başlık -->
         </div>
-        <p> 
-            <div class="message">
-            {{ data.message }}  <!-- Açıklama -->
-            <div>
-        </p>
+
+        <div class="message">
+            <p>{{ data.message }}</p>  <!-- Açıklama -->
+        </div>
+
         <ul>
             {% for number in data.heading %}
-                <li>{{ number | format_phone }}</li>
+                <li>{{ number }}</li>  <!-- Filtre hatası düzeltildi -->
             {% endfor %}
         </ul>
-      <!-- İletişim bilgilerini tek satırda gösteriyoruz -->
+
+        <!-- İletişim bilgileri -->
         <div class="contact-info">
             <p><strong>Sipariş üçün:</strong> 
                 <span class="contact-logo">
@@ -40,6 +45,19 @@
                 <span class="contact-text">{{ data.phone }}</span>
             </p>
         </div>
+
+
+        {% if data.operator_icons %}
+            <div class="operator-icons">
+                {% for icon_op in data.operator_icons %}
+                    <img src="{{ url_for('static', filename='icons/operator/' + icon_op) }}" 
+                        alt="Icon" 
+                        class="operator-icons op-icon-{{ loop.index }}">
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Operator ikonları tapılmadı.</p>
+        {% endif %} 
 
         <footer>
             <p>{{ data.description }}</p>  <!-- Açıklama -->

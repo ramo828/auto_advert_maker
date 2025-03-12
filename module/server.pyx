@@ -39,6 +39,7 @@ def home():
         'phone': settings['site_settings']['phone'],  # JSON'dan telefon numarası
         'message': settings['site_settings']['message'],  # JSON'dan mesaj
         'icons': settings['site_settings']['icons'],  # JSON'dan ikonlar
+        'operator_icons': settings['site_settings']['operator_icons'],  # JSON'dan ikonlar
         'css_path': settings['site_settings']['css_path'],  # JSON'dan CSS yolu
         'logo_path': settings['site_settings']['logo_path']  # JSON'dan logo yolu
 

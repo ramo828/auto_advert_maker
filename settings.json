@@ -28,10 +28,15 @@
             "instagram.ico",
             "tiktok.ico"
         ],
+        "operator_icons": [
+            "azercell.png",
+            "bakcell.png",
+            "nar.png"
+        ],
         "template_path": "index.html",
         "css_path": "style.css",
         "logo_path": "logo_b1r.png",
-        "phone_separator": "~~"
+        "phone_separator": "-"
     },
     "server_settings": {
         "host": "0.0.0.0",

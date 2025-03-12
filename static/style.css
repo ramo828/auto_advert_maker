@@ -76,10 +76,10 @@ li::after {
   content: "";
   position: absolute;
   bottom: -5px; /* Çizginin yeri */
-  left: 15%; /* Çizgiyi sola doğru biraz kaydırarak merkezle */
-  right: 15%; /* Çizgiyi sağa doğru biraz kaydırarak merkezle */
-  width: 70%; /* Çizginin uzunluğunu kısaltmak için 80% yapıyoruz */
-  height: 2px; /* Çizginin kalınlığı */
+  left: 6%;     /* Çizgiyi sola doğru biraz kaydırarak merkezle */
+  right: 6%;    /* Çizgiyi sağa doğru biraz kaydırarak merkezle */
+  width: 88%;   /* Çizginin uzunluğunu kısaltmak için 80% yapıyoruz */
+  height: 2px;  /* Çizginin kalınlığı */
   background-color: #fff; /* Çizginin rengi beyaz */
   opacity: 0.3; /* Çizginin saydamlığı */
 }
@@ -132,15 +132,15 @@ head img {
 }
 /* İletişim məlumatları bölməsinin stili */
 .contact-info {
-  background-color: rgba(255, 255, 255, 0.3); /* Saydam ağ arxa plan */
-  opacity: 0.8; /* Saydamlıq əlavə edirik */
-  padding: 10px; /* İçəriyə boşluq verilmir */
-  margin-top: 15px; /* Üstdən boşluq buraxılır */
-  border-radius: 15px; /* Küncləri yuvarlaqlaşdırırıq */
-  font-family: "CustomFont", sans-serif; /* Ümumi font ilə uyğun */
   display: flex;
   align-items: center;
-  justify-content: center; /* Ortaya hizalama */
+  justify-content: center;
+  background: rgba(0, 0, 0, 0); /* Hafif şeffaf arka plan */
+  border-radius: 10px; /* Köşeleri yuvarlak çerçeve */
+  padding: 10px 20px; /* İç boşluk */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Hafif beyaz çerçeve */
+  width: fit-content;
+  margin-top:  45px ; /* Üst və alt boşluq */
 }
 
 /* Tüm öğeleri aynı satıra hizalama */
@@ -149,7 +149,7 @@ head img {
   align-items: center; /* Dikeyde ortalama */
   gap: 10px; /* Elemanlar arasına boşluk */
   font-size: 30px; /* Yazı ölçüsünü böyüdürük */
-  color: #ffcc00; /* Yazı rəngini sarı edirik */
+  color: #fdfdfb; /* Yazı rəngini sarı edirik */
   margin: 0; /* Gereksiz boşlukları kaldır */
 }
 
@@ -168,6 +168,7 @@ head img {
 .contact-text {
   font-size: 1.9rem;
   font-weight: bold;
+  color: yellow;
 }
 
 /* Yazı və logonun eyni xəttdə olmasını təmin edirik */
@@ -177,4 +178,21 @@ head img {
   margin-bottom: 30px; /* Yazının altına boşluq buraxırıq */
   font-size: 1.3rem; /* Siyahı elementlərinin ölçüsünü təyin edirik */
   color: antiquewhite; /* Yazının rəngini dəyişirik */
+}
+
+.operator-icons {
+  margin: 10px;  /* İkonlar arasında boşluq buraxırıq */
+}
+
+
+.op-icon-1 {
+  margin-bottom: 20px;
+}
+/*
+.op-icon-2 {
+  margin-bottom: 25px;
+}
+*/
+.op-icon-3 {
+  margin-bottom: 28px;
 }
