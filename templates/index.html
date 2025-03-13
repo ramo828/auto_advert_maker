@@ -32,7 +32,7 @@
 
         <ul>
             {% for number in data.heading %}
-                <li>{{ number }}</li>  <!-- Filtre hatası düzeltildi -->
+            <li>{{ number | format_phone }}</li>
             {% endfor %}
         </ul>
 
